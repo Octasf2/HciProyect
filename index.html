@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enviar datos</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <script>
+    // Espera a que el MIT envíe los datos
+    window.addEventListener("message", function(event) {
+      try {
+        const data = JSON.parse(event.data);
+
+        fetch("https://dry-springs-20735-bb95a27d9e9e.herokuapp.com/guardar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.text())
+        .then(result => console.log("✅ Datos enviados:", result))
+        .catch(error => console.error("❌ Error al enviar:", error));
+      } catch (e) {
+        console.error("❌ Error al parsear:", e);
+      }
+    });
+  </script>
+</body>
+</html>
