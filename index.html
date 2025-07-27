@@ -24,7 +24,10 @@
         body: JSON.stringify(datos)
       })
       .then(res => res.text())
-      .then(msg => console.log("✅ Enviado a servidor:", msg))
+      .then(msg => {
+        console.log("✅ Enviado a servidor:", msg);
+        window.parent.postMessage(msg, "*");  // 👈 ESTA LÍNEA ENVÍA LA RESPUESTA A MIT
+      })
       .catch(err => console.error("❌ Error:", err));
     });
   </script>
