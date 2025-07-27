@@ -27,7 +27,7 @@
       .then(msg => {
         alert("Respuesta del servidor: " + msg);
         console.log("✅ Enviado a servidor:", msg);
-        window.parent.postMessage(msg, "*");
+         window.AppInventor.setWebViewString(msg);
       })
       .catch(err => console.error("❌ Error:", err));
     });
