@@ -39,7 +39,6 @@
           1: "✅ Jugador es candidato a pasar de nivel",
           2: "🔁 Jugador repetiría el nivel"
         }[resultado] || "⚠ Sin datos";
-        document.getElementById("prediccion").innerText = texto;
         window.AppInventor.setWebViewString(texto);
       })
       .catch(err => {
