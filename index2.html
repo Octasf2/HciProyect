@@ -3,24 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Predicción en vivo</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: rgba(0, 0, 0, 0); /* Transparente real */
-    }
-    body {
-      font-family: sans-serif;
-      color: white;
-      font-size: 14px;
-    }
-    #prediccion {
-      padding: 5px;
-    }
-  </style>
 </head>
 <body>
-  <div id="prediccion">🔍 Predicción en vivo: Esperando datos...</div>
+  <h3>🔍 Predicción en vivo</h3>
+  <div id="prediccion" style="font-size: 20px; margin-top: 10px;">Esperando datos...</div>
 
   <script>
     window.addEventListener("message", function(event) {
@@ -39,7 +25,7 @@
           1: "✅ Jugador es candidato a pasar de nivel",
           2: "🔁 Jugador repetiría el nivel"
         }[resultado] || "⚠ Sin datos";
-        window.AppInventor.setWebViewString(texto);
+        document.getElementById("prediccion").innerText = texto;
       })
       .catch(err => {
         document.getElementById("prediccion").innerText = "❌ Error al predecir";
