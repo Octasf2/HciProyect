@@ -1,0 +1,39 @@
+// === index.html (modificado para predicción en vivo) ===
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Predicción en vivo</title>
+</head>
+<body>
+  <h3>🔍 Predicción en vivo</h3>
+  <div id="prediccion" style="font-size: 20px; margin-top: 10px;">Esperando datos...</div>
+
+  <script>
+    window.addEventListener("message", function(event) {
+      const datos = event.data;
+
+      fetch("https://dry-springs-20735-bb95a27d9e9e.herokuapp.com/prediccion_en_vivo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(datos)
+      })
+      .then(res => res.json())
+      .then(respuesta => {
+        const resultado = respuesta.resultado;
+        const texto = {
+          0: "❌ Jugador perdería si sigue así",
+          1: "✅ Jugador es candidato a pasar de nivel",
+          2: "🔁 Jugador repetiría el nivel"
+        }[resultado] || "⚠ Sin datos";
+        document.getElementById("prediccion").innerText = texto;
+      })
+      .catch(err => {
+        document.getElementById("prediccion").innerText = "❌ Error al predecir";
+        console.error("Error en predicción en vivo:", err);
+      });
+    });
+  </script>
+</body>
+</html>
