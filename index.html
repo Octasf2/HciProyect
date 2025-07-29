@@ -24,12 +24,13 @@
       })
       .then(res => res.json()) // 👈 Cambiado a JSON
       .then(respuesta => {
-        console.log("✅ Enviado a servidor:", respuesta);
-        // Enviar pantalla a App Inventor
-        window.AppInventor.setWebViewString(respuesta.pantalla);
-
-        // Guardar resultado también si lo necesitas después
-        window.resultadoJuego = respuesta.resultado;
+        console.log("🔍 Respuesta recibida:", respuesta);
+      
+        if ("resultado" in respuesta && respuesta.resultado !== undefined) {
+          window.AppInventor.setWebViewString(String(respuesta.resultado));
+        } else {
+          window.AppInventor.setWebViewString("-1");  // valor de seguridad
+        }
       })
       .catch(err => console.error("❌ Error:", err));
     });
