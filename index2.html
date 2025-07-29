@@ -30,6 +30,7 @@
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos)
+        window.AppInventor.setWebViewString(texto);
       })
       .then(res => res.json())
       .then(respuesta => {
