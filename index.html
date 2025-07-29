@@ -4,27 +4,23 @@
   <meta charset="UTF-8">
   <title>Predicción en vivo</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      background-color: transparent;
+      padding: 0;
+      background: transparent;
     }
-
-    h3 {
-      font-size: 16px;
-      margin: 10px;
+    body {
+      font-family: sans-serif;
       color: white;
-    }
-
-    #prediccion {
       font-size: 14px;
-      margin: 10px;
-      color: white;
+    }
+    #prediccion {
+      padding: 5px;
     }
   </style>
 </head>
 <body>
-  <h3>🔍 Predicción en vivo</h3>
-  <div id="prediccion">Esperando datos...</div>
+  <div id="prediccion">🔍 Predicción en vivo: Esperando datos...</div>
 
   <script>
     window.addEventListener("message", function(event) {
